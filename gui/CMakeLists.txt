@@ -11,5 +11,5 @@ target_include_directories(${LIBRARY_NAME} PUBLIC
 )
 
 target_link_libraries(${LIBRARY_NAME} PUBLIC
-    imgui Logic
+    imgui Core
 )
