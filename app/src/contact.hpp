@@ -14,6 +14,9 @@ make my Node class in a way that leaves no way to make mistake other developers.
 namespace core {
 
 	class Contact{
+
+		using Contact_Shared_Pointer = std::shared_ptr<Contact>;
+
 	public:
 		Contact() = default;
 		Contact(const std::string_view& name, const  std::string_view& phoneNumber);
@@ -21,14 +24,17 @@ namespace core {
 		Contact(Contact&& other) noexcept;
 		~Contact() = default;
 
-		void setRightChild(std::shared_ptr<Contact> child);
-		void setLeftChild(std::shared_ptr<Contact> child);
+		void setRightChild(Contact_Shared_Pointer child);
+		void setLeftChild(Contact_Shared_Pointer child);
+		void setParent(Contact_Shared_Pointer parent);
 		void setName(const  std::string_view& name);
 		void setPhoneNumber(const  std::string_view& phoneNumber);
 		std::string getName() const;
 		std::string getPhoneNumber() const;
-		std::shared_ptr<Contact> getRightChild() const;
-		std::shared_ptr<Contact> getLeftChild() const;
+		Contact_Shared_Pointer getRightChild() const;
+		Contact_Shared_Pointer getLeftChild() const;
+		Contact_Shared_Pointer getParent() const;
+		void swapData(Contact_Shared_Pointer& other);
 
 	public:
 		Contact& operator =(const Contact& other);
@@ -37,8 +43,9 @@ namespace core {
 	private:
 		std::string m_name;
 		std::string m_phoneNumber;
-		std::shared_ptr<Contact> m_rightChild;
-		std::shared_ptr<Contact> m_leftChild;
+		Contact_Shared_Pointer m_rightChild;
+		Contact_Shared_Pointer m_leftChild;
+		Contact_Shared_Pointer m_parent;
 	};
 
 }
