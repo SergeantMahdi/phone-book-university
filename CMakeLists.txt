@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.23)
 project(
-    PhonBook 
+    PhoneBook 
     VERSION 1.0.0
     LANGUAGES CXX C
 )
