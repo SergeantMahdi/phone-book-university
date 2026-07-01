@@ -13,3 +13,4 @@ target_include_directories(${LIBRARY_NAME} PUBLIC
 target_link_libraries(${LIBRARY_NAME} PUBLIC
     imgui Core
 )
+target_compile_definitions(Gui PRIVATE SOURCE_DIR="${CMAKE_SOURCE_DIR}")
