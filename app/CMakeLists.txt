@@ -10,6 +10,8 @@ add_library(${APP_CORE} STATIC
     src/phoneBook.hpp
     src/contact.hpp
     src/contact.cpp
+    src/consoleGui.hpp
+    src/consoleGui.cpp
 )
 
 target_link_libraries(${APP_NAME} PRIVATE

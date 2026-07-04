@@ -1,9 +1,4 @@
 #include "phoneBook.hpp"
-#include "phoneBook.hpp"
-#include "phoneBook.hpp"
-#include "phoneBook.hpp"
-#include "phoneBook.hpp"
-#include "phoneBook.hpp"
 #include <stack>
 #include <iostream>
 #include <vector>
@@ -56,8 +51,8 @@ bool core::PhoneBook::push(const std::string_view& name, const std::string_view&
 
 	if (!m_shared_root){
 		m_shared_root = newContact;
-		std::cout << "The contact saved as the root\n";
 		m_size++;
+		std::cout << "[SUCCESS]: Contact added successfully\n";
 		return true;
 	}
 	Contact_Shared_Pointer current{ m_shared_root };
@@ -73,7 +68,7 @@ bool core::PhoneBook::push(const std::string_view& name, const std::string_view&
 				current->setLeftChild(newContact);
 				current->getLeftChild()->setParent(parent);
 				m_size++;
-				std::cout << "The contact saved as the left child\n";
+				std::cout << "[SUCCESS]: Contact added successfully\n";
 				return true;
 			}
 			current = current->getLeftChild();
@@ -83,13 +78,14 @@ bool core::PhoneBook::push(const std::string_view& name, const std::string_view&
 				current->setRightChild(newContact);
 				current->getRightChild()->setParent(parent);
 				m_size++;
-				std::cout << "The contact saved as the right child\n";
+				std::cout << "[SUCCESS]: Contact added successfully\n";
 				return true;
 			}
 			current = current->getRightChild();
 		}
 	}
-	return true;
+	std::cout << "[FAILURE]: Failed to add contact\n";
+	return false;
 }
 
 bool core::PhoneBook::remove(const std::string_view& name)							// No Recursion (I don't want to increase the space complexity)
@@ -127,6 +123,7 @@ bool core::PhoneBook::remove(const std::string_view& name)							// No Recursion
 	else if (parent->getLeftChild() == current)
 		parent->setLeftChild(nullptr);
 
+	std::cout << "[SUCCESS]: Contact removed successfully\n";
 	m_size--;
 	return true;
 }
@@ -198,10 +195,13 @@ bool core::PhoneBook::update(const std::string_view& name, const std::string_vie
 {
 	Contact_Shared_Pointer foundContact = find(name);
 
-	if (!foundContact)
+	if (!foundContact) {
+		std::cout << "[FAILURE]: Contact Not Found\n";
 		return false;
+	}
 
 	foundContact->setPhoneNumber(phoneNumber);
+	std::cout << "[SUCCESS]: Contact updated successfully\n";
 	return true;
 }
 
