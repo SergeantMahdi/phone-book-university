@@ -118,6 +118,8 @@ void gui::Gui::renderFrame()
 		ImGuiWindowFlags_NoBringToFrontOnFocus |
 		ImGuiWindowFlags_NoNavFocus };
 
+	ImGui::SetNextWindowPos(ImGui::GetMainViewport()->WorkPos);
+	ImGui::SetNextWindowSize(ImGui::GetMainViewport()->WorkSize);
 	ImGui::SetNextWindowSize(ImVec2(ImGui::GetMainViewport()->WorkSize.x, ImGui::GetMainViewport()->WorkSize.y));
 	ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(0.01f, 0.02f, 0.07f, 1.0f));
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 8.0f);
@@ -172,7 +174,7 @@ void gui::Gui::renderUI()
 		"Searched Contact",
 		1, contactListFlags,
 		ImVec2(ImGui::GetContentRegionAvail().x,
-		ImGui::GetContentRegionAvail().y - 70));
+		ImGui::GetContentRegionAvail().y - 100));
 
 	// Contact Table
 	auto contactList = m_phoneBook.getContactList();
