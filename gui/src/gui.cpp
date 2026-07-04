@@ -8,8 +8,6 @@
 #include "GLFW/glfw3.h"
 #include "components.hpp"
 #include "contact.hpp"
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_Image.h"
 
 namespace fonts {
 	ImFont* Roboto_Regular_Small;
@@ -19,10 +17,6 @@ namespace fonts {
 	ImFont* Roboto_Bold_Small;
 	ImFont* Roboto_Bold_Large;
 	ImFont* Roboto_Bold_XLarge;
-}
-
-namespace images {
-
 }
 
 
